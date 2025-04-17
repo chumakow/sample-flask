@@ -11,34 +11,18 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="content">
-      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjY3IDE3NS4yIDE3Ni40IDE3Ni41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDY3IDE3NS4yIDE3Ni40IDE3Ni41OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojRkZGRkZGO30NCjwvc3R5bGU+DQo8ZyBpZD0iWE1MSURfMjI5XyI+DQoJPGcgaWQ9IlhNTElEXzY5MF8iPg0KCQk8ZyBpZD0iWE1MSURfNjkxXyI+DQoJCQk8Zz4NCgkJCQk8ZyBpZD0iWE1MSURfNDRfIj4NCgkJCQkJPGcgaWQ9IlhNTElEXzQ4XyI+DQoJCQkJCQk8cGF0aCBpZD0iWE1MSURfNDlfIiBjbGFzcz0ic3QwIiBkPSJNMTU1LjIsMzUxLjd2LTM0LjJjMzYuMiwwLDY0LjMtMzUuOSw1MC40LTc0Yy01LjEtMTQuMS0xNi40LTI1LjQtMzAuNS0zMC41DQoJCQkJCQkJYy0zOC4xLTEzLjgtNzQsMTQuMi03NCw1MC40bDAsMEg2N2MwLTU3LjcsNTUuOC0xMDIuNywxMTYuMy04My44YzI2LjQsOC4zLDQ3LjUsMjkuMyw1NS43LDU1LjcNCgkJCQkJCQlDMjU3LjksMjk1LjksMjEzLDM1MS43LDE1NS4yLDM1MS43eiIvPg0KCQkJCQk8L2c+DQoJCQkJCTxwb2x5Z29uIGlkPSJYTUxJRF80N18iIGNsYXNzPSJzdDAiIHBvaW50cz0iMTU1LjMsMzE3LjYgMTIxLjMsMzE3LjYgMTIxLjMsMjgzLjYgMTIxLjMsMjgzLjYgMTU1LjMsMjgzLjYgMTU1LjMsMjgzLjYgCQkJCQkNCgkJCQkJCSIvPg0KCQkJCQk8cG9seWdvbiBpZD0iWE1MSURfNDZfIiBjbGFzcz0ic3QwIiBwb2ludHM9IjEyMS4zLDM0My44IDk1LjEsMzQzLjggOTUuMSwzNDMuOCA5NS4xLDMxNy42IDEyMS4zLDMxNy42IAkJCQkJIi8+DQoJCQkJCTxwYXRoIGlkPSJYTUxJRF80NV8iIGNsYXNzPSJzdDAiIGQ9Ik05NS4xLDMxNy42SDczLjJsMCwwdi0yMS45bDAsMGgyMS45bDAsMFYzMTcuNnoiLz4NCgkJCQk8L2c+DQoJCQk8L2c+DQoJCTwvZz4NCgk8L2c+DQo8L2c+DQo8L3N2Zz4NCg==" alt="DigitalOcean Logo" width="100" />
-      <h1>Welcome to your new <a href="https://flask.palletsprojects.com/en/1.1.x/">Flask App</a>!</h1>
-
-      <p>
-        This application is an example of how to deploy a Flask Application to DigitalOcean's App
-        Platform. Check out their <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">documentation</a> to
-        learn more about flask.
-      </p>
-
+  <div class="main-flex">
+    <div class="left-panel">
+      <textarea id="user-input" placeholder="Type your message..." class="input-box"></textarea>
+      <div class="spacer"></div>
+      <textarea id="llm-output" placeholder="LLM output will appear here..." class="output-box" readonly></textarea>
+      <div class="spacer"></div>
+      <button class="action-btn" id="execute-btn">Execute</button>
     </div>
-
-    <div class="links">
-      <a href="https://github.com/MasonEgger/python-slackbot-sampleapp" target="_blank"
-        rel="noopener noreferrer"><strong>Sample Slackbot using Flask</strong>
-        <span>Learn how to build a Slackbot in Python</span>
-      </a>
-      <a href="https://www.digitalocean.com/docs/app-platform/languages-frameworks/python/" target="_blank"
-        rel="noopener noreferrer"><strong>DigitalOcean App Platform Docs for Flask</strong>
-        <span>DigitalOcean's reference documentation for Flask</span>
-      </a>
-      <a href="https://www.digitalocean.com/docs/app-platform/" target="_blank" rel="noopener noreferrer"><strong>App
-          Platform Documentation</strong><span>Learn about DigitalOcean's App Platform</span></a>
-      <a href="https://www.digitalocean.com/docs/droplets/how-to/" target="_blank" rel="noopener noreferrer"><strong>App
-          Platform API Documentation</strong>
-        <span>REST API Documentation for App Platform</span>
-      </a>
+    <div class="right-panel">
+      <textarea id="custom-prompt" class="prompt-box">DEFAULT PROMPT</textarea>
+      <div class="spacer"></div>
+      <button class="action-btn" id="update-btn">Update</button>
     </div>
   </div>
 
@@ -63,15 +47,7 @@
       color: #fff;
       font-family: "Nunito Sans", sans-serif;
       font-size: 19px;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Almarai", sans-serif;
+      background: none;
     }
 
     :root {
@@ -101,10 +77,6 @@
       transform-origin: 0;
     }
 
-    #stripes span {
-      /* border: 1px solid #c00c00; */
-    }
-
     #stripes span:first-child {
       grid-column: span 1;
       background: var(--first);
@@ -132,127 +104,119 @@
       background: var(--fifth);
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 50px 0;
-    }
-
-    .content {
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    h1 a {
-      color: #dbf1f5;
-    }
-
-    h1 a:hover {
-      color: #7decff;
-    }
-
-    p {
-      margin-bottom: 50px;
-    }
-     p a {
-      color:chartreuse;
-    }
-    
-    li {
-      text-align: left
-    }
-
-    code {
-      display: inline-block;
-      padding: 3px 6px;
-      margin-left: 3px;
-      margin-right: 3px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-      background: #1a2279;
-      color: #dbf1f5;
-    }
-
-    .links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .links a {
-      position: relative;
-      display: block;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 5px;
-      padding: 20px;
-      font-size: 1.1rem;
-      text-decoration: none;
-      color: #222;
-      transition: 0.3s ease all;
-      overflow: hidden;
-    }
-
-    .links a:before,
-    .links a:after {
-      font-size: 40px;
-      display: block;
-      position: absolute;
-    }
-
-    .links a:before {
-      content: "";
-      top: -80%;
-      right: -150px;
-      width: 250px;
-      height: 250px;
-      background: rgba(125, 236, 255, 0.6);
-      pointer-events: none;
-      transform: rotate(-25deg);
-      transition: 0.4s cubic-bezier(0.34, 0.31, 0, 1.81) transform;
-    }
-
-    .links a:after {
-      content: "👉";
-      top: 0;
-      bottom: 0;
+    .main-flex {
       display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 80vh;
+      min-height: 500px;
+    }
+
+    .left-panel, .right-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
-      right: 30px;
-      transform: translateX(80px);
-      transition: 0.3s cubic-bezier(0.34, 0.31, 0, 1.81) transform;
-    }
-
-    .links a:hover {
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .links a:hover:before {
-      transform: rotate(-25deg) translateX(60px);
-    }
-
-    .links a:hover:after {
-      transform: none;
-    }
-
-    .links a strong,
-    .links a span {
+      width: 48%;
+      height: 100%;
       position: relative;
-      z-index: 1;
     }
 
-    .links a strong {
-      font-weight: bold;
+    .input-box {
+      width: 100%;
+      min-height: 40px;
+      max-height: 80px;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 7px;
+      border: none;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.9);
+      color: #222;
+      font-family: inherit;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .output-box {
+      width: 100%;
+      min-height: 120px;
+      max-height: 200px;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 7px;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      color: #222;
+      font-family: inherit;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .prompt-box {
+      width: 100%;
+      min-height: 170px;
+      max-height: 300px;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 7px;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      color: #222;
+      font-family: inherit;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .action-btn {
+      width: 50%;
+      min-width: 120px;
+      max-width: 200px;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-family: "Almarai", sans-serif;
+      font-weight: 800;
+      border: none;
+      border-radius: 7px;
+      background: #53f;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 40px;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: background 0.2s;
       display: block;
-      margin-bottom: 5px;
     }
 
-    .links a span {
-      color: #787878;
-      font-size: 0.9rem;
+    .action-btn:hover {
+      background: #4553ff;
+    }
+
+    .spacer {
+      height: 18px;
+      width: 100%;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .main-flex {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+      }
+      .left-panel, .right-panel {
+        width: 100%;
+        min-height: 300px;
+        margin-bottom: 40px;
+      }
+      .right-panel {
+        margin-bottom: 0;
+      }
     }
   </style>
 </body>
