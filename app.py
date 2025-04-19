@@ -16,7 +16,7 @@ def hello_world():
 @app.route("/execute", methods=["POST"])    
 def execute():                    
     input_query = request.form.get("input_query")       
-    app.logger.info('got it')
-    return 1             
+    app.logger.info(input_query)
+    return input_query           
 
 
