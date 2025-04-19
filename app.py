@@ -17,6 +17,7 @@ def hello_world():
 def execute():                    
     input_query = request.form.get("input_query")       
     app.logger.info(input_query)
+    app.logger.info('1')
     return input_query           
 
 
