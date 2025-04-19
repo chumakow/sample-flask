@@ -10,6 +10,7 @@ app = Flask(__name__,
 
 @app.route("/")
 def hello_world():
+    app.logger.info(input_query)
     return render_template("index.html")
 
 
