@@ -5,17 +5,6 @@ form.addEventListener("submit", function (e) {
     getOutput();
 });
 
-const second_form = document.querySelector("#second_form");
-second_form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    updatePrompt();
-    console.log("kuku")
-});
-
-//function fillLlmOutput(incoming_text) {
-//    document.getElementById("output_box").textContent = incoming_text;
-//};
-
 function getOutput() {
     const query = form.elements.query.value;
     fetch("execute", {
@@ -35,57 +24,3 @@ function getOutput() {
             document.getElementById("llm_output").textContent = output
         })
 }
-
-function updatePrompt() {
-    const prompt = second_form.elements.prompt.value;
-    fetch("update", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: new URLSearchParams({
-                prompt: prompt
-            })
-        })
-        .then((response) => response.json())
-        .then(data => {
-            const output = data.output;
-            console.log("updating");
-            //const output_box = document.querySelector(".output_box");   // selecting container thing declared above
-            //document.getElementById("llm_output").textContent = output
-        })
-}
-
-// Enable form submit on Enter (without Shift) in textarea
-document.addEventListener('DOMContentLoaded', function() {
-    var textarea = document.getElementById('query-input');
-    var form = document.getElementById('form');
-    textarea.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        form.requestSubmit();
-        }
-        });
-    });
-
-document.addEventListener('DOMContentLoaded', function() {
-    var textarea = document.getElementById('prompt-input');
-    var form = document.getElementById('second_form');
-    textarea.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        form.requestSubmit();
-        }
-        });
-    });
-
-
-// Reset button
-document.querySelector('#second_form button[type="button"]').onclick = function() {
-    fetch('/reset', {method: 'POST'})
-      .then(response => response.json())
-      .then(data => {
-          // Optionally, reload the page or show a message
-          window.location.reload();
-      });
-};
