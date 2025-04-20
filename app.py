@@ -5,10 +5,10 @@ import os
 
 dotenv.load_dotenv()  # Loads variables from .env
 
-#api_key = os.getenv("OPENAI_API_KEY")
-config = dotenv.dotenv_values('.env')
-openai.api_key = config["OPENAI_API_KEY"]
-#openai.api_key = config["api_key"]
+openai_api_key = os.getenv("OPENAI_API_KEY")
+#config = dotenv.dotenv_values('.env')
+#openai.api_key = config["OPENAI_API_KEY"]
+openai.api_key = openai_api_key
 
 client = openai.OpenAI()
 
