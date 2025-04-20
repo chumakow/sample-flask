@@ -4,8 +4,12 @@ import dotenv
 import os
 
 dotenv.load_dotenv()  # Loads variables from .env
+app.logger.info('2')
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
+app.logger.info('3')
+app.logger.info(openai_api_key)
+
 #config = dotenv.dotenv_values('.env')
 #openai.api_key = config["OPENAI_API_KEY"]
 #openai.api_key = openai_api_key
