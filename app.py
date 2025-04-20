@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, jsonify
+
+import dotenv
 dotenv.load_dotenv
 print(os.environ)#os.environ["OPENAI_API_KEY"]=openai_api_key
 
 import openai
-import dotenv
 import os
 
 # dotenv.load_dotenv()  # Loads variables from .env
