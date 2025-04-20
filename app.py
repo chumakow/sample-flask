@@ -1,3 +1,6 @@
+
+## For digital ocean (TO BE NAMED app.py)
+
 from flask import Flask, render_template, request, jsonify
 
 import os
@@ -7,33 +10,40 @@ print(os.environ)#os.environ["OPENAI_API_KEY"]=openai_api_key
 
 import openai
 
-# dotenv.load_dotenv()  # Loads variables from .env
-# print('2')
-
-# openai_api_key = os.getenv("OPENAI_API_KEY")
-# print('3')
-# print(openai_api_key)
-
-
-#config = dotenv.dotenv_values('.env')
-#openai.api_key = config["OPENAI_API_KEY"]
-#openai.api_key = openai_api_key
-
 client = openai.OpenAI()
 
-def get_response(msg):
-    prompt = f"""
-    You are psychotherapist, but an unconventional one. Take in {msg} and respond like you are drunk slavic psychotherapist, using word "yopta" from time to time.
-    """
-        
-    response = client.responses.create(
-        input = prompt,
-        model = 'gpt-4.1'
-    )
-    print((response.output[0].content[0].text))
-    response = response.output[0].content[0].text
-    return response
 
+class LLM_agent():
+    """comment me"""
+
+    default_prompt = 'You are psychotherapist, but an unconventional one. Take in user message and respond like you are drunk slavic psychotherapist, excessively using word "yopta".'
+    
+    def __init__(self, prompt=default_prompt):
+        self.prompt = prompt
+        self.messages = [{"role": "developer", "content": self.prompt}]
+
+    def __repr__(self):
+        return self.prompt
+        
+    def get_response(self, msg):
+        app.logger.info(msg)
+        
+        self.messages.append({"role": "user", "content": msg})
+        app.logger.info(self.messages)
+        
+        completion = client.chat.completions.create(
+            model="gpt-4.1-nano",
+            messages=self.messages
+        )
+
+        response = completion.choices[0].message.content
+        self.messages.append({"role": "assistant", "content": response})
+        print(self.messages)
+        return response
+
+agent = LLM_agent()
+
+print(agent.messages)
 
 app = Flask(__name__,
             template_folder='templates',
@@ -43,7 +53,7 @@ app = Flask(__name__,
 
 
 @app.route("/")
-def hello_world():
+def main_page():
     app.logger.info('2')
     return render_template("index.html")
 
@@ -53,7 +63,23 @@ def execute():
     input_query = request.form.get("query")       
     app.logger.info(input_query)
     app.logger.info('1')
-    llm_response = get_response(input_query)
+    print(dir())
+    llm_response = agent.get_response(input_query)
     return {"output": llm_response}
 
 
+@app.route("/update", methods=["POST"])    
+def update():
+    global agent
+    new_prompt = request.form.get("prompt")       
+    app.logger.info(new_prompt)
+    app.logger.info('4')
+    agent = LLM_agent(new_prompt)
+    print(agent)
+    return {"result": f"updated with {new_prompt}"}
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    global agent
+    agent = LLM_agent()
+    return jsonify({"status": "reset"})
