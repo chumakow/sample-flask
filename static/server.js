@@ -88,6 +88,7 @@ document.querySelector('#second_form button[type="button"]').onclick = function(
           // Optionally, reload the page or show a message
           window.location.reload();
       });
+    sessionStorage.clear();     // trying to clear cache etc
 };
 
 // Get current prompt and message history
