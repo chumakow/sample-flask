@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, jsonify
+dotenv.load_dotenv
+print(os.environ)#os.environ["OPENAI_API_KEY"]=openai_api_key
+
 import openai
 import dotenv
 import os
@@ -15,7 +18,7 @@ import os
 #openai.api_key = config["OPENAI_API_KEY"]
 #openai.api_key = openai_api_key
 
-client = openai.OpenAI(api_key=OPENAI_API_KEY)
+client = openai.OpenAI()
 
 def get_response(msg):
     prompt = f"""
