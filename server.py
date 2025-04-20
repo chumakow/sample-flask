@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import openai
-from dotenv import dotenv_values
+import dotenv
+import os
 
-config = dotenv_values('.env')
+dotenv.load_dotenv()  # Loads variables from .env
+
+#api_key = os.getenv("OPENAI_API_KEY")
+config = dotenv.dotenv_values('.env')
 openai.api_key = config["OPENAI_API_KEY"]
 
 client = openai.OpenAI()
