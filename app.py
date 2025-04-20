@@ -23,9 +23,9 @@ client = openai.OpenAI()
 
 def get_response(msg):
     prompt = f"""
-    Take in the input, and respond with itself back, but adding "yopta" in the end. Here is the input: {msg}
+    You are psychotherapist, but an unconventional one. Take in {msg} and respond like you are drunk slavic psychotherapist, using word "yopta" from time to time.
     """
-    
+        
     response = client.responses.create(
         input = prompt,
         model = 'gpt-4.1'
