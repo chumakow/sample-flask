@@ -11,217 +11,224 @@
 </head>
 
 <body>
-  <div class="main-flex">
-    <div class="left-panel">
-      <textarea id="user-input" placeholder="Type your message..." class="input-box"></textarea>
-      <div class="spacer"></div>
-      <textarea id="llm-output" placeholder="LLM output will appear here..." class="output-box" readonly></textarea>
-      <div class="spacer"></div>
-      <button class="action-btn" id="execute-btn">Execute</button>
+    <div class="main-flex">
+        <div class="left-panel">
+            <textarea id="user-input" placeholder="Type your message..." class="input-box"></textarea>
+            <form id="form">
+                <input type="text" name="query">
+                <button class="btn">Submit</button>
+            </form>
+            <div id="output_box">Results will appear here.</div>
+            <div class="spacer"></div>
+            <textarea id="llm-output" placeholder="LLM output will appear here..." class="output-box" readonly></textarea>
+            <div class="spacer"></div>
+            <button class="action-btn" id="execute-btn">Execute</button>
+
+        </div>
+
+        <div class="right-panel">
+            <textarea id="custom-prompt" class="prompt-box">DEFAULT PROMPT</textarea>
+            <div class="spacer"></div>
+            <button class="action-btn" id="update-btn">Update</button>
+        </div>
     </div>
-    <div class="right-panel">
-      <textarea id="custom-prompt" class="prompt-box">DEFAULT PROMPT</textarea>
-      <div class="spacer"></div>
-      <button class="action-btn" id="update-btn">Update</button>
+
+    <div id="stripes">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
-  </div>
 
-  <div id="stripes">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        body {
+            margin: 0;
+            padding: 50px;
+            min-height: 100vh;
+            position: relative;
+            color: #fff;
+            font-family: "Nunito Sans", sans-serif;
+            font-size: 19px;
+            background: none;
+        }
 
-    body {
-      margin: 0;
-      padding: 50px;
-      min-height: 100vh;
-      position: relative;
-      color: #fff;
-      font-family: "Nunito Sans", sans-serif;
-      font-size: 19px;
-      background: none;
-    }
+        :root {
+            --background: linear-gradient(150deg, #17acff 15%, #016aff 70%, #68a6ff 94%);
+            --first: #53f;
+            --second: #4553ff;
+            --third: #4f40ff;
+            --fourth: #25ddf5;
+            --fifth: #1fa2ff;
+        }
 
-    :root {
-      --background: linear-gradient(150deg,
-          #17acff 15%,
-          #016aff 70%,
-          #68a6ff 94%);
-      --first: #53f;
-      --second: #4553ff;
-      --third: #4f40ff;
-      --fourth: #25ddf5;
-      --fifth: #1fa2ff;
-    }
+        #stripes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100vw;
+            display: grid;
+            background: var(--background);
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            transform: skewY(-12deg);
+            transform-origin: 0;
+        }
 
-    #stripes {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100vw;
-      display: grid;
-      background: var(--background);
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-      transform: skewY(-12deg);
-      transform-origin: 0;
-    }
+            #stripes span:first-child {
+                grid-column: span 1;
+                background: var(--first);
+            }
 
-    #stripes span:first-child {
-      grid-column: span 1;
-      background: var(--first);
-    }
+            #stripes span:nth-child(2) {
+                grid-column: span 2;
+                background: var(--second);
+            }
 
-    #stripes span:nth-child(2) {
-      grid-column: span 2;
-      background: var(--second);
-    }
+            #stripes span:nth-child(3) {
+                grid-column: span 2;
+                background: var(--third);
+            }
 
-    #stripes span:nth-child(3) {
-      grid-column: span 2;
-      background: var(--third);
-    }
+            #stripes span:nth-child(4) {
+                grid-column: 6;
+                grid-row: 3;
+                background: var(--fourth);
+            }
 
-    #stripes span:nth-child(4) {
-      grid-column: 6;
-      grid-row: 3;
-      background: var(--fourth);
-    }
+            #stripes span:nth-child(5) {
+                grid-column: span 2;
+                grid-row: 4;
+                background: var(--fifth);
+            }
 
-    #stripes span:nth-child(5) {
-      grid-column: span 2;
-      grid-row: 4;
-      background: var(--fifth);
-    }
+        .main-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 80vh;
+            min-height: 500px;
+        }
 
-    .main-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      height: 80vh;
-      min-height: 500px;
-    }
+        .left-panel, .right-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            width: 48%;
+            height: 100%;
+            position: relative;
+        }
 
-    .left-panel, .right-panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      width: 48%;
-      height: 100%;
-      position: relative;
-    }
+        .input-box {
+            width: 100%;
+            min-height: 100px;
+            max-height: 80px;
+            resize: vertical;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 7px;
+            border: none;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #222;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
 
-    .input-box {
-      width: 100%;
-      min-height: 100px;
-      max-height: 80px;
-      resize: vertical;
-      font-size: 1rem;
-      padding: 10px;
-      border-radius: 7px;
-      border: none;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.9);
-      color: #222;
-      font-family: inherit;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
+        .output-box {
+            width: 100%;
+            min-height: 300px;
+            max-height: 200px;
+            resize: vertical;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 7px;
+            border: none;
+            background: rgba(255,255,255,0.85);
+            color: #222;
+            font-family: inherit;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
 
-    .output-box {
-      width: 100%;
-      min-height: 300px;
-      max-height: 200px;
-      resize: vertical;
-      font-size: 1rem;
-      padding: 10px;
-      border-radius: 7px;
-      border: none;
-      background: rgba(255,255,255,0.85);
-      color: #222;
-      font-family: inherit;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
+        .prompt-box {
+            width: 100%;
+            min-height: 420px;
+            max-height: 300px;
+            resize: vertical;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 7px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            color: #222;
+            font-family: inherit;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
 
-    .prompt-box {
-      width: 100%;
-      min-height: 420px;
-      max-height: 300px;
-      resize: vertical;
-      font-size: 1rem;
-      padding: 10px;
-      border-radius: 7px;
-      border: none;
-      background: rgba(255,255,255,0.9);
-      color: #222;
-      font-family: inherit;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
+        .action-btn {
+            width: 50%;
+            min-width: 120px;
+            max-width: 200px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-family: "Almarai", sans-serif;
+            font-weight: 800;
+            border: none;
+            border-radius: 7px;
+            background: #53f;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 40px;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.2s;
+            display: block;
+        }
 
-    .action-btn {
-      width: 50%;
-      min-width: 120px;
-      max-width: 200px;
-      padding: 12px 0;
-      font-size: 1.1rem;
-      font-family: "Almarai", sans-serif;
-      font-weight: 800;
-      border: none;
-      border-radius: 7px;
-      background: #53f;
-      color: #fff;
-      cursor: pointer;
-      margin-bottom: 40px;
-      margin-top: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      transition: background 0.2s;
-      display: block;
-    }
+            .action-btn:hover {
+                background: #4553ff;
+            }
 
-    .action-btn:hover {
-      background: #4553ff;
-    }
+        .spacer {
+            height: 18px;
+            width: 100%;
+            display: block;
+        }
 
-    .spacer {
-      height: 18px;
-      width: 100%;
-      display: block;
-    }
+        @media (max-width: 900px) {
+            .main-flex {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+            }
 
-    @media (max-width: 900px) {
-      .main-flex {
-        flex-direction: column;
-        align-items: stretch;
-        height: auto;
-      }
-      .left-panel, .right-panel {
-        width: 100%;
-        min-height: 300px;
-        margin-bottom: 40px;
-      }
-      .right-panel {
-        margin-bottom: 0;
-      }
-    }
-  </style>
+            .left-panel, .right-panel {
+                width: 100%;
+                min-height: 300px;
+                margin-bottom: 40px;
+            }
 
-  <script src="server.js"></script>
-  
+            .right-panel {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+
+    <script src="server.js"></script>
+
+
 </body>
 
 </html>
