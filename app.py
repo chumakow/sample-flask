@@ -83,3 +83,14 @@ def reset():
     global agent
     agent = LLM_agent()
     return jsonify({"status": "reset"})
+
+@app.route('/get_vars')
+def get_vars():
+    # Put out cuurent prompt and message history
+    
+    global agent
+
+    return jsonify({
+        "current_prompt": f"CURRENT PROMPT IS : {agent.prompt}",
+        "message_history": f"MESSAGE HISTORY : {agent.messages}"
+    })
