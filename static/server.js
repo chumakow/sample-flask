@@ -1,15 +1,15 @@
 const form = document.querySelector("#form");
 form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    console.log("Hello, World!");
+    e.preventDefault();;
     getOutput();
+    setTimeout(updateOutputBoxes, 5000);   // update current prompt and message history; wait long enough for output to feed through
 });
 
 const second_form = document.querySelector("#second_form");
 second_form.addEventListener("submit", function (e) {
     e.preventDefault();
     updatePrompt();
-    console.log("kuku")
+    updateOutputBoxes();    // update current prompt and message history
 });
 
 //function fillLlmOutput(incoming_text) {
@@ -89,3 +89,16 @@ document.querySelector('#second_form button[type="button"]').onclick = function(
           window.location.reload();
       });
 };
+
+// Get current prompt and message history
+function updateOutputBoxes() {
+    fetch('/get_vars')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('current_prompt_box').textContent = data.current_prompt;
+            document.getElementById('message_history_box').textContent = data.message_history;
+        });
+}
+
+    // Update on initial page load
+document.addEventListener('DOMContentLoaded', updateOutputBoxes);
