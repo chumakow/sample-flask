@@ -3,19 +3,19 @@ import openai
 import dotenv
 import os
 
-dotenv.load_dotenv()  # Loads variables from .env
-print('2')
+# dotenv.load_dotenv()  # Loads variables from .env
+# print('2')
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
-print('3')
-print(openai_api_key)
+# openai_api_key = os.getenv("OPENAI_API_KEY")
+# print('3')
+# print(openai_api_key)
 
 
 #config = dotenv.dotenv_values('.env')
 #openai.api_key = config["OPENAI_API_KEY"]
 #openai.api_key = openai_api_key
 
-client = openai.OpenAI(api_key=openai_api_key)
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 def get_response(msg):
     prompt = f"""
