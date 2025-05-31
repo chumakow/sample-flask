@@ -132,4 +132,4 @@ def get_ics_file():
     with open(temp_filename, 'wt') as f:
         f.write(response)
     
-    return send_file(temp_filename, as_attachment=True, download_name='calendar.ics', mimetype='text/calendar')
+    return send_file(temp_filename, as_attachment=True, mimetype='text/calendar')#, download_name='calendar.ics'
