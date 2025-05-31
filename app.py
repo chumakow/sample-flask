@@ -129,7 +129,7 @@ def get_ics_file():
     print(response)
 
     temp_filename = 'temp.ics'
-    if os.path.exists('temp_filename')
+    if os.path.exists('temp_filename'):
         os.remove(temp_filename)
     with open(temp_filename, 'wt') as f:
         f.write(response)
