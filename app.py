@@ -133,7 +133,7 @@ def get_ics_file():
     temp_filename = f'tmp/temp_{seconds_since_epoch}.ics'
     if os.path.exists('temp_filename'):
         os.remove(temp_filename)
-    with open(temp_filename, 'wt') as f:
+    with open(temp_filename, 'w') as f:
         f.write(response)
     
     return send_file(temp_filename, as_attachment=True, mimetype='text/calendar')#, download_name='calendar.ics'
