@@ -115,7 +115,7 @@ def get_ics_file():
     actions = agent.messages[-1]['content']
     print(10*'\n'+actions+5*'\n')
     
-    agent_ics_prompt = 'Please take in the user message and make an ics file out of it. Consider the whole message, and then derive actionable items (may be under **Action plan** section). ALWAYS keep all details as they have been in the action, do not change any dates, action names or places. If there are multiple actions provided, make sure they are all on ONE .ics file. Pack each of them within its own BEGIN:VEVENT ... END:VEVENT and make sure each of them has its unique ID. Respond ONLY with ics code - this should be a parseable file. Make sure year on all dates is 2025.'
+    agent_ics_prompt = 'Please take in the user message and make an ics file out of it. Consider the whole message, and then derive actionable items (may be under **Action plan** section). ALWAYS keep all details as they have been in the action, do not change any dates, action names or places. If there are multiple actions provided, make sure they are all on ONE .ics file. Pack each of them within its own BEGIN:VEVENT ... END:VEVENT and make sure each of them has its unique ID. Respond ONLY with ics code - this should be a parseable file. Make sure year on all dates is 2025. Only choose calendar events, for which dates are explicitly mentioned in the message; never make up dates'
     agent_ics_messages = [{'role': 'developer', 'content': agent_ics_prompt}, {'role': 'user', 'content': actions}]
     
     completion = client.chat.completions.create(
