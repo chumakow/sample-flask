@@ -127,13 +127,14 @@ def get_ics_file():
     response = completion.choices[0].message.content
 
     print(response)
+    return response
 
-    seconds_since_epoch = int(time.time())
-    print(seconds_since_epoch)
-    temp_filename = f'tmp/temp_{seconds_since_epoch}.ics'
-    if os.path.exists('temp_filename'):
-        os.remove(temp_filename)
-    with open(temp_filename, 'w') as f:
-        f.write(response)
+    # seconds_since_epoch = int(time.time())
+    # print(seconds_since_epoch)
+    # temp_filename = f'tmp/temp_{seconds_since_epoch}.ics'
+    # if os.path.exists('temp_filename'):
+    #     os.remove(temp_filename)
+    # with open(temp_filename, 'w') as f:
+    #     f.write(response)
     
-    return send_file(temp_filename, as_attachment=True, mimetype='text/calendar')#, download_name='calendar.ics'
+    # return send_file(temp_filename, as_attachment=True, mimetype='text/calendar')#, download_name='calendar.ics'
