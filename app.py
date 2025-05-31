@@ -2,7 +2,7 @@
 ## For digital ocean (TO BE NAMED app.py)
 
 from flask import Flask, render_template, request, jsonify, send_file
-
+import time
 import os
 import dotenv
 dotenv.load_dotenv
@@ -128,7 +128,9 @@ def get_ics_file():
 
     print(response)
 
-    temp_filename = 'temp.ics'
+    seconds_since_epoch = int(time.time())
+    print(seconds_since_epoch)
+    temp_filename = f'tmp/temp_{seconds_since_epoch}.ics'
     if os.path.exists('temp_filename'):
         os.remove(temp_filename)
     with open(temp_filename, 'wt') as f:
