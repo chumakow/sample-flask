@@ -129,6 +129,7 @@ def get_ics_file():
     print(response)
 
     temp_filename = 'temp.ics'
+    os.remove(temp_filename)
     with open(temp_filename, 'wt') as f:
         f.write(response)
     
