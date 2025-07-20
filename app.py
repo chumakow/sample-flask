@@ -178,7 +178,7 @@ def get_vars():
 
     return jsonify({
         "current_prompt": f"CURRENT PROMPT IS : {agent.prompt}",
-        "message_history": f"MESSAGE HISTORY : {agent.messages}"
+        "message_history": f"MESSAGE HISTORY : {agent.messages[1:]}"
     })
 
 @app.route('/get_ics_file')
